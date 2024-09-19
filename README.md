@@ -22,10 +22,7 @@ You may need the following tools.
 
 ```bash
 export/set AWS_ACCESS_KEY_ID=ur_aws_access_key
-
 export/set AWS_SECRET_ACCESS_KEY=ur_aws_secret
-
-aws s3 mb s3://mozrestapi
 ```
 
 * create an S3 bucket so that you can upload your build artifacts into it. Bucket names are globally unique, so you may need to change the name
@@ -37,22 +34,16 @@ aws s3 mb s3://my-bucket-moz-61717
 * Run the following commands to build the artifact
 ```bash
 git clone https://github.com/mozammal/aws-api-gateway-dynampodb-sample.git
-
 cd aws-api-gateway-dynampodb-sample
-
 mvn clean package
 ```
 
 * Navigate to the Terraform folder and deploy the application on AWS using the following commands
 ```bash
 cd terraform
-
 terraform init
-
 terraform apply
-
 terraform output
-
 ```
 
 * You can now view the get_url and post_url in the console. Use the following JSON payload to make a POST request
@@ -64,8 +55,6 @@ terraform output
     "latitude": 40.70, 
     "longitude": -73.99
 }
-
-
 ```
 ## Cleanup
 
