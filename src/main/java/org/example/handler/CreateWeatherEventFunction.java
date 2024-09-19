@@ -12,14 +12,16 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 public class CreateWeatherEventFunction {
-  private final ObjectMapper objectMapper = new ObjectMapper();
-  DynamoDbClient dynamoDbClient;
+
   private final String tableName = System.getenv("LOCATIONS_TABLE");
   private final String awsRegionEnv = System.getenv("AWS_REGION");
+  private final Region region = Region.of(awsRegionEnv);
+
+  private final ObjectMapper objectMapper = new ObjectMapper();
+
+  private final DynamoDbClient dynamoDbClient;
   private final DynamoDbEnhancedClient enhancedClient;
   private final DynamoDbTable<WeatherEvent> mappedTable;
-
-  final Region region = Region.of(awsRegionEnv);
 
   public CreateWeatherEventFunction() {
     this.dynamoDbClient = DynamoDbClient.builder().region(region).build();

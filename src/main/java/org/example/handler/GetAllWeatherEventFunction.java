@@ -17,14 +17,15 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class GetAllWeatherEventFunction {
-  private final ObjectMapper objectMapper = new ObjectMapper();
+
+  private static final String DEFAULT_LIMIT = "20";
   private final String tableName = System.getenv("LOCATIONS_TABLE");
-
   private final String awsRegionEnv = System.getenv("AWS_REGION");
-  final Region region = Region.of(awsRegionEnv);
+  private final Region region = Region.of(awsRegionEnv);
 
-  private static final String DEFAULT_LIMIT = "50";
-  DynamoDbClient dynamoDbClient;
+  private final ObjectMapper objectMapper = new ObjectMapper();
+
+  private final DynamoDbClient dynamoDbClient;
   private final DynamoDbEnhancedClient enhancedClient;
   private final DynamoDbTable<WeatherEvent> mappedTable;
 
